@@ -3,8 +3,9 @@
     var currentIndex = 0;
     var newIndex = null;
 
-    var slideElements = document.getElementsByClassName('slider__slide');
+    var slideElements = document.getElementsByClassName("slider__slide");
     var slidesLength = slideElements.length;
+    var paginationElement = document.getElementsByClassName("slider__pag")[0];
     var sliderNavElements = document.getElementsByClassName("slider__nav");
 
     function navigateSlider() {
@@ -14,9 +15,9 @@
         else if (newIndex === slidesLength) {
             newIndex = 0;
         }
-        
-        slideElements[newIndex].style.display = "block";
+
         slideElements[currentIndex].style.display = "none";
+        slideElements[newIndex].style.display = "block";
         currentIndex = newIndex;
     }
 
@@ -28,5 +29,14 @@
     sliderNavElements[1].addEventListener('click', function() {
         newIndex++;
         navigateSlider();
+    });
+
+    paginationElement.addEventListener('click', function(e) {
+        var target = e.target.closest(".slider__pag__btn");
+        if (!target) return;
+        if (target.classList.contains("slider__pag__btn")) {
+            newIndex = Number(target.getAttribute("aria-posinset"));
+            navigateSlider();
+        }
     });
 </script>
