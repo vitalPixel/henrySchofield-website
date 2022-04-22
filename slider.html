@@ -3,6 +3,9 @@
     var currentIndex = 0;
     var newIndex = null;
 
+    var initialX, initialY, initialTime;
+
+    var sliderElement = document.getElementsByClassName("slider")[0];
     var slideElements = document.getElementsByClassName("slider__slide");
     var slidesLength = slideElements.length;
     var paginationElement = document.getElementsByClassName("slider__pag")[0];
@@ -23,6 +26,31 @@
         slideElements[newIndex].style.display = "block";
         currentIndex = newIndex;
     }
+
+    sliderElement.addEventListener('touchstart', function(e) {
+        initialX = e.touches[0].clientX;
+        initialY = e.touches[0].clientY;
+        initialTime = new Date();
+    });
+
+    sliderElement.addEventListener('touchend', function(e) {
+        var deltaX = e.changedTouches[0].clientX - initialX;
+        var deltaY = e.changedTouches[0].clientY - initialY;
+        var deltaTime = new Date() - initialTime;
+
+        if (deltaTime < 400 && deltaY < 150) {
+            if (deltaX > 40) {
+                // Swipe-right gesture.
+                newIndex--;
+                navigateSlider();
+            }
+            else if (deltaX < -40) {
+                // Swipe-left gesture.
+                newIndex++;
+                navigateSlider();
+            }
+        }
+    });
 
     sliderNavElements[0].addEventListener('click', function() {
         newIndex--;
