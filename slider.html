@@ -5,10 +5,10 @@
 
     var initialX, initialY, initialTime;
 
-    var sliderElement = document.getElementsByClassName("slider")[0];
     var slideElements = document.getElementsByClassName("slider__slide");
     var slidesLength = slideElements.length;
     var paginationElement = document.getElementsByClassName("slider__pag")[0];
+    var sliderNavElement = document.getElementsByClassName("slider__nav")[0];
     var sliderNavElements = document.getElementsByClassName("slider__nav__btn");
 
     function navigateSlider() {
@@ -27,13 +27,13 @@
         currentIndex = newIndex;
     }
 
-    sliderElement.addEventListener('touchstart', function(e) {
+    sliderNavElement.addEventListener('touchstart', function(e) {
         initialX = e.touches[0].clientX;
         initialY = e.touches[0].clientY;
         initialTime = new Date();
     });
 
-    sliderElement.addEventListener('touchend', function(e) {
+    sliderNavElement.addEventListener('touchend', function(e) {
         var deltaX = e.changedTouches[0].clientX - initialX;
         var deltaY = e.changedTouches[0].clientY - initialY;
         var deltaTime = new Date() - initialTime;
