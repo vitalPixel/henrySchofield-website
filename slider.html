@@ -16,6 +16,9 @@
             newIndex = 0;
         }
 
+        paginationElement.childNodes[currentIndex].querySelector('.slider__pag__btn').classList.remove('slider__pag__btn--active');
+        paginationElement.childNodes[newIndex].querySelector('.slider__pag__btn').classList.add('slider__pag__btn--active');
+
         slideElements[currentIndex].style.display = "none";
         slideElements[newIndex].style.display = "block";
         currentIndex = newIndex;
