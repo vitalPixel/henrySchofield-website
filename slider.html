@@ -13,12 +13,22 @@
 
     var autoplay = true;
     var autoplayInterval = 8000;
+    var autoplayTimer = null;
 
     function navigateSlider() {
+        if (autoplay) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(function() {
+                newIndex++;
+                navigateSlider();
+            }, autoplayInterval);
+        }
+
         // Handle navigation from first slide
         if (newIndex === -1) {
             newIndex = slidesLength - 1;
         }
+
         // Handle navigation from last slide
         else if (newIndex === slidesLength) {
             newIndex = 0;
@@ -87,7 +97,7 @@
 
     // Navigate the slider automatically
     if (autoplay) {
-        setInterval(function() {
+        autoplayTimer = setInterval(function() {
             newIndex++;
             navigateSlider();
         }, autoplayInterval);
