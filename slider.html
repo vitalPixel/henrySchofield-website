@@ -8,7 +8,6 @@
     var slideElements = document.getElementsByClassName("slider__slide");
     var slidesLength = slideElements.length;
     var paginationElement = document.getElementsByClassName("slider__pag")[0];
-    var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active");
     var sliderNavElement = document.getElementsByClassName("slider__nav")[0];
     var sliderNavElements = document.getElementsByClassName("slider__nav__btn");
 
@@ -26,13 +25,14 @@
         paginationElement.childNodes[currentIndex].querySelector('.slider__pag__btn').classList.remove('slider__pag__btn--active');
         paginationElement.childNodes[newIndex].querySelector('.slider__pag__btn').classList.add('slider__pag__btn--active');
 
-        // Scroll the active pagination button into view
-        paginationActiveElement.parentElement.scrollIntoView({behavior: "smooth", inline: "center"});
-
         // Navigate to the correct slide
         slideElements[currentIndex].style.display = "none";
         slideElements[newIndex].style.display = "block";
         currentIndex = newIndex;
+
+        // Scroll the active pagination button into view
+        var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
+        paginationActiveElement.parentElement.scrollIntoView({behavior: "smooth", inline: "center"});
     }
 
     sliderNavElement.addEventListener('touchstart', function(e) {
