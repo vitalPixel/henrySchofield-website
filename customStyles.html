@@ -1,7 +1,8 @@
 <style>
+    /* Hide scroll bars */
     .slider__pag::-webkit-scrollbar {
         width: 0 !important;
-        height: 0 !important;    
+        height: 0 !important;
     }
 
     .slider__pag {
@@ -10,5 +11,9 @@
 
     .slider__pag {
         -ms-overflow-style: none;
-        }
+    }
+    /* Offset the last pagination item from the right edge of the screen */
+    .slider__pag__item:last-child {
+        padding-right: 1rem;
+    }
 </style>
