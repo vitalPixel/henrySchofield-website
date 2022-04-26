@@ -70,4 +70,11 @@
             navigateSlider();
         }
     });
+
+    // set horizontal scroll for the slider pagination container
+    paginationElement.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        paginationElement.scrollLeft += e.deltaY;
+        paginationElement.scrollLeft += e.deltaX;
+    });
 </script>
