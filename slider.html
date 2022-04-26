@@ -12,21 +12,30 @@
     var sliderNavElements = document.getElementsByClassName("slider__nav__btn");
 
     var autoplay = true;
-    var autoplayInterval = 8000;
-    var autoplayTimer = null;
 
-    // Define the autoplay logic
-    function startTimer() {
-        autoplayTimer = setInterval(function() {
-            newIndex++;
-            navigateSlider();
-        }, autoplayInterval);        
+    var Autoplay = {
+        timerID: null,
+        interval: 8000,
+
+        // Define the autoplay logic
+        start: function() {
+            this.timerID = setInterval(function() {
+                newIndex++;
+                navigateSlider();
+            }, this.interval);
+        },
+
+        // Define the logic to reset autoplay timer
+        reset: function() {
+            clearInterval(this.timerID);
+            this.start();
+        }
     }
 
+    // Perform a navigation
     function navigateSlider() {
         if (autoplay) {
-            clearInterval(autoplayTimer);
-            startTimer();
+            Autoplay.reset();
         }
 
         // Handle navigation from first slide
@@ -102,7 +111,7 @@
 
     // Navigate the slider automatically
     if (autoplay) {
-        startTimer();
+        Autoplay.start();
     }
 
     // Set horizontal scroll for the slider pagination container
