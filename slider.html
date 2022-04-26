@@ -15,13 +15,18 @@
     var autoplayInterval = 8000;
     var autoplayTimer = null;
 
+    // Define the autoplay logic
+    function startTimer() {
+        autoplayTimer = setInterval(function() {
+            newIndex++;
+            navigateSlider();
+        }, autoplayInterval);        
+    }
+
     function navigateSlider() {
         if (autoplay) {
             clearInterval(autoplayTimer);
-            autoplayTimer = setInterval(function() {
-                newIndex++;
-                navigateSlider();
-            }, autoplayInterval);
+            startTimer();
         }
 
         // Handle navigation from first slide
@@ -97,10 +102,7 @@
 
     // Navigate the slider automatically
     if (autoplay) {
-        autoplayTimer = setInterval(function() {
-            newIndex++;
-            navigateSlider();
-        }, autoplayInterval);
+        startTimer();
     }
 
     // Set horizontal scroll for the slider pagination container
