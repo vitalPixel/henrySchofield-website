@@ -35,6 +35,7 @@
         paginationActiveElement.parentElement.scrollIntoView({behavior: "smooth", inline: "center"});
     }
 
+    // Navigate slider by swiping on touch screens
     sliderNavElement.addEventListener('touchstart', function(e) {
         initialX = e.touches[0].clientX;
         initialY = e.touches[0].clientY;
@@ -60,6 +61,7 @@
         }
     });
 
+    // Navigate slider by clicking the navigation buttons
     sliderNavElements[0].addEventListener('click', function() {
         newIndex--;
         navigateSlider();
@@ -70,6 +72,7 @@
         navigateSlider();
     });
 
+    // Navigate slider by clicking the pagination buttons
     paginationElement.addEventListener('click', function(e) {
         var target = e.target.closest(".slider__pag__btn");
         if (!target) return;
@@ -79,7 +82,13 @@
         }
     });
 
-    // set horizontal scroll for the slider pagination container
+    // Navigate the slider automatically
+    setInterval(function() {
+        newIndex++;
+        navigateSlider();
+    }, 8000);
+
+    // Set horizontal scroll for the slider pagination container
     paginationElement.addEventListener('wheel', (e) => {
         e.preventDefault();
         paginationElement.scrollLeft += e.deltaY;
