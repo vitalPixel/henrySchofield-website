@@ -11,6 +11,9 @@
     var sliderNavElement = document.getElementsByClassName("slider__nav")[0];
     var sliderNavElements = document.getElementsByClassName("slider__nav__btn");
 
+    var autoplay = true;
+    var autoplayInterval = 8000;
+
     function navigateSlider() {
         // Handle navigation from first slide
         if (newIndex === -1) {
@@ -83,10 +86,12 @@
     });
 
     // Navigate the slider automatically
-    setInterval(function() {
-        newIndex++;
-        navigateSlider();
-    }, 8000);
+    if (autoplay) {
+        setInterval(function() {
+            newIndex++;
+            navigateSlider();
+        }, autoplayInterval);
+    }
 
     // Set horizontal scroll for the slider pagination container
     paginationElement.addEventListener('wheel', (e) => {
