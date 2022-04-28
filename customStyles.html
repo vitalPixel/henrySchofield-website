@@ -10,7 +10,7 @@
         }
     }
 
-    /* Hide scroll bars */
+    /* Hide scroll bars on the slider pagination container */
     .slider__pag::-webkit-scrollbar {
         width: 0 !important;
         height: 0 !important;
@@ -23,6 +23,34 @@
     .slider__pag {
         -ms-overflow-style: none;
     }
+
+    /* Hide scroll bars and prevent vertical sscroll on the horizontal scrollable container */
+    .h--horizontal-scroll::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .h--horizontal-scroll {
+        overflow: -moz-scrollbars-none;
+    }
+
+    .h--horizontal-scroll {
+        -ms-overflow-style: none;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    /* Prevent vertical bouncing on iOS */
+    html {
+        overflow: hidden;
+        height: var(--windowHeight);
+    }
+
+    .h--full-screen {
+        height: 100%;
+        height: -webkit-fill-available;
+    }
+
     /* Offset the last pagination item from the right edge of the screen */
     .slider__pag__item:last-child {
         padding-right: 1rem;

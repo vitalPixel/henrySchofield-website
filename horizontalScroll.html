@@ -1,0 +1,33 @@
+<script>
+    var dragToScroll = true;
+
+    // Support horizontal scroll with the mouse wheel and trackpad
+    var horizontalScrollElement = document.getElementsByClassName("h--horizontal-scroll")[0];
+
+    horizontalScrollElement.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        horizontalScrollElement.scrollLeft += e.deltaY;
+        horizontalScrollElement.scrollLeft += e.deltaX;
+    });
+
+    // Support horizontal scroll by dragging vertically with mouse or touch
+    // TODO: improve scrolling animation
+    if (dragToScroll) {
+        var initialY, deltaY;
+
+        window.addEventListener('pointerdown', function(e) {
+            e.preventDefault();
+            initialY = e.clientY;
+        });
+
+        window.addEventListener('pointermove', function(e) {
+            deltaY = e.clientY - initialY;
+            horizontalScrollElement.scrollLeft += deltaY;
+            console.log(deltaY);
+        });
+
+        window.addEventListener('pointerup', function(e) {
+            // TODO: Cancel the scrolling event when the pointer is released
+        })
+    }
+</script>
