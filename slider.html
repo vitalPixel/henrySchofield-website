@@ -54,14 +54,17 @@
         paginationElement.childNodes[currentIndex].querySelector('.slider__pag__btn').classList.remove('slider__pag__btn--active');
         paginationElement.childNodes[newIndex].querySelector('.slider__pag__btn').classList.add('slider__pag__btn--active');
 
-        // TODO: Stop playing the video from the current slide (currentIndex)
+        // Stop playing the video from the current slide and set it to the start so that it is ready to be played again
+        slideElements[currentIndex].querySelector('.video-backg__embed').pause();
+        slideElements[currentIndex].querySelector('.video-backg__embed').currentTime = 0;
 
         // Navigate to the correct slide
         slideElements[currentIndex].style.display = "none";
         slideElements[newIndex].style.display = "block";
         currentIndex = newIndex;
 
-        // TODO: Start playing the video from the next slide (newIndex or currentIndex?)
+        // Start playing the video from the next slide
+        slideElements[currentIndex].querySelector('.video-backg__embed').play();
 
         // Scroll the active pagination button into view
         var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
