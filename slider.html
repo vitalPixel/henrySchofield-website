@@ -36,6 +36,10 @@
 
     // Perform a navigation
     function navigateSlider() {
+        var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
+        var currentVideoElements = slideElements[currentIndex].querySelector('.video-backg__embed');
+        var nextVideoElements = slideElements[newIndex].querySelector('.video-backg__embed');
+
         if (autoplay) {
             Autoplay.reset();
         }
@@ -55,8 +59,8 @@
         paginationElement.childNodes[newIndex].querySelector('.slider__pag__btn').classList.add('slider__pag__btn--active');
 
         // Stop playing the video from the current slide and set it to the start so that it is ready to be played again
-        slideElements[currentIndex].querySelector('.video-backg__embed').pause();
-        slideElements[currentIndex].querySelector('.video-backg__embed').currentTime = 0;
+        currentVideoElements.pause();
+        currentVideoElements.currentTime = 0;
 
         // Navigate to the correct slide
         slideElements[currentIndex].style.display = "none";
@@ -64,10 +68,9 @@
         currentIndex = newIndex;
 
         // Start playing the video from the next slide
-        slideElements[currentIndex].querySelector('.video-backg__embed').play();
+        nextVideoElements.play();
 
         // Scroll the active pagination button into view
-        var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
         paginationActiveElement.parentElement.scrollIntoView({behavior: "smooth", inline: "center"});
     }
 
