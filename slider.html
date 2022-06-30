@@ -38,7 +38,6 @@
     function navigateSlider() {
         var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
         var currentVideoElements = slideElements[currentIndex].querySelector('.video-backg__embed');
-        var nextVideoElements = slideElements[newIndex].querySelector('.video-backg__embed');
 
         if (autoplay) {
             Autoplay.reset();
@@ -53,6 +52,7 @@
         else if (newIndex === slidesLength) {
             newIndex = 0;
         }
+        var nextVideoElements = slideElements[newIndex].querySelector('.video-backg__embed');
 
         // Make the pagination button of the active slider active
         paginationElement.childNodes[currentIndex].querySelector('.slider__pag__btn').classList.remove('slider__pag__btn--active');
