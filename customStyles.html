@@ -24,20 +24,22 @@
         -ms-overflow-style: none;
     }
 
-    /* Hide scroll bars and prevent vertical sscroll on the horizontal scrollable container */
-    .h--horizontal-scroll::-webkit-scrollbar {
-        width: 0 !important;
-        height: 0 !important;
-    }
-
+    /* Prevent vertical sscroll on the horizontal scrollable container */
     .h--horizontal-scroll {
-        overflow: -moz-scrollbars-none;
-    }
-
-    .h--horizontal-scroll {
-        -ms-overflow-style: none;
         overflow-y: hidden;
         overflow-x: scroll;
+    }
+
+    /* Hide scroll bars */
+    .h--hide-scrollbars {
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+    }
+
+    .h--hide-scrollbars::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        display: none;
     }
 
     /* Prevent vertical bouncing on iOS */
