@@ -7,8 +7,7 @@
 
     var initialX, initialY, initialTime;
 
-    var slideElements = document.getElementsByClassName("slider__slide");
-    var slideWrapperElements = document.getElementsByClassName("slider__slide__wrapper");
+    var slideElements = document.getElementsByClassName("slider__slide__wrapper");
     var slidesLength = slideElements.length;
     var paginationElement = document.getElementsByClassName("slider__pag")[0];
     var sliderNavElement = document.getElementsByClassName("slider__nav")[0];
@@ -38,7 +37,7 @@
     // Perform a navigation
     function navigateSlider() {
         var paginationActiveElement = document.getElementsByClassName("slider__pag__btn--active")[0];
-        var currentVideoElements = slideElements[currentIndex].querySelector('.video-backg__embed');
+        var currentVideoElements = slideElements[currentIndex].firstElementChild.querySelector('.video-backg__embed');
 
         if (autoplay) {
             Autoplay.reset();
@@ -53,15 +52,11 @@
         else if (newIndex === slidesLength) {
             newIndex = 0;
         }
-        var nextVideoElements = slideElements[newIndex].querySelector('.video-backg__embed');
+        var nextVideoElements = slideElements[newIndex].firstElementChild.querySelector('.video-backg__embed');
 
         // Make the pagination button of the current slide active
         paginationElement.childNodes[currentIndex].querySelector('.slider__pag__btn').classList.remove('slider__pag__btn--active');
         paginationElement.childNodes[newIndex].querySelector('.slider__pag__btn').classList.add('slider__pag__btn--active');
-
-        // Hide the slide title of the current slide and display the slide title of the next slide
-        slideWrapperElements[currentIndex].querySelector('.slide__title__wrapper').style.display='none';
-        slideWrapperElements[newIndex].querySelector('.slide__title__wrapper').style.display='flex';
 
         // Stop playing the video from the current slide and set it to the start so that it is ready to be played again
         currentVideoElements.pause();
