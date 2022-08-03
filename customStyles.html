@@ -10,6 +10,19 @@
         }
     }
 
+    /* Resize category titles on small screens */
+    @media screen and (max-width: 1023px) {
+        .category-title__h1 {
+            font-size: 5vh;
+        }
+        .category-title__h1.category-title__h1--subtitle {
+            font-size: 5vh;
+        }
+        .video-list {
+            width: 80vw;
+        }
+    }
+
     /* Hide scroll bars on the slider pagination container */
     .slider__pag::-webkit-scrollbar {
         width: 0 !important;
