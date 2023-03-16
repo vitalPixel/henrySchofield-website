@@ -19,32 +19,12 @@
         .category-title__h1 {
             font-size: 5vh;
         }
-        .category-title__h1.category-title__h1--subtitle {
+        .category-title__h1.category-title__h1--subtitle, .category-title__h1.category-title__h1--subtitle.category-title__h1--music-videos, .category-title__h1.category-title__h1--subtitle.category-title__h1--commercials, .category-title__h1.category-title__h1--subtitle.category-title__h1--unsolicited {
             font-size: 5vh;
         }
         .video-list {
             width: 80vw;
         }
-    }
-
-    /* Hide scroll bars on the slider pagination container */
-    .slider__pag::-webkit-scrollbar {
-        width: 0 !important;
-        height: 0 !important;
-    }
-
-    .slider__pag {
-        overflow: -moz-scrollbars-none;
-    }
-
-    .slider__pag {
-        -ms-overflow-style: none;
-    }
-
-    /* Prevent vertical sscroll on the horizontal scrollable container */
-    .h--horizontal-scroll {
-        overflow-y: hidden;
-        overflow-x: scroll;
     }
 
     /* Hide scroll bars */
@@ -58,6 +38,16 @@
         width: 0 !important;
         height: 0 !important;
         display: none;
+    }
+
+    /* Prevent vertical bouncing on iOS */
+    html {
+        overflow: hidden;
+    }
+
+    .h--full-screen {
+        height: 100%;
+        height: -webkit-fill-available;
     }
 
     /* Rotate video title text 90 deg */
