@@ -1,0 +1,83 @@
+<style>
+    /* Resize root element font-size on smaller screens */
+    @media screen and (max-width: 736px) {
+        html {
+            font-size: 12px;
+        }
+
+        h1 {
+            font-size: 11vw;
+        }
+
+        .slider__nav {
+            top: 24vw;
+        }
+    }
+
+    /* Resize category titles on small screens */
+    @media screen and (max-width: 1023px) {
+        .category-title__h1 {
+            font-size: 5vh;
+        }
+        .category-title__h1.category-title__h1--subtitle {
+            font-size: 5vh;
+        }
+        .video-list {
+            width: 80vw;
+        }
+    }
+
+    /* Hide scroll bars on the slider pagination container */
+    .slider__pag::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .slider__pag {
+        overflow: -moz-scrollbars-none;
+    }
+
+    .slider__pag {
+        -ms-overflow-style: none;
+    }
+
+    /* Prevent vertical sscroll on the horizontal scrollable container */
+    .h--horizontal-scroll {
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+
+    /* Hide scroll bars */
+    .h--hide-scrollbars {
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .h--hide-scrollbars::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        display: none;
+    }
+
+    /* Rotate video title text 90 deg */
+    .video-list__title__wrapper {
+        writing-mode: vertical-rl;
+    }
+
+    /* Rotate category page title 90 deg */
+    .category-title__h1 {
+        writing-mode: vertical-rl;
+    }
+
+    /* Rotate slide title 90 deg */
+    .slide__title__wrapper {
+        writing-mode: vertical-rl;
+    }
+
+    /* Use the true height of the viewport on mobile for the rotated menu container */
+    .menu__items--rotated {
+        width: 95vh; /* Fallback for browsers that do not support Custom Properties */
+        width: calc(var(--vh, 1vh) * 95);
+    }
+</style>
