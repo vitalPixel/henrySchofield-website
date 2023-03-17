@@ -1,0 +1,55 @@
+<div data-src="video-preview.mp4" class="video-list__item__prev--wide">
+    <img src="video-preview.jpeg" class="video-list__item__img">
+</div>
+
+<style>
+    .video-list__item__video {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+</style>
+  
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const videoPreviews = document.querySelectorAll('.video-list__item__prev--wide:not([data-src=""])');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const preview = entry.target;
+                    const previewImg = entry.target.querySelector('.video-list__item__img');
+                    const videoSrc = preview.dataset.src;
+
+                    if (videoSrc) {
+                        const previewVideo = document.createElement('video');
+                        previewVideo.src = videoSrc;
+                        previewVideo.setAttribute('autoplay', '');
+                        previewVideo.setAttribute('loop', '');
+                        previewVideo.classList.add('video-list__item__video');
+
+                        preview.addEventListener('mouseenter', function() {
+                            entry.target.appendChild(previewVideo);
+                            previewVideo.play();
+
+                            previewImg.style.transition = 'opacity 0.2s ease-out';
+                            previewImg.style.opacity = 0;
+                        });
+
+                        preview.addEventListener('mouseleave', function() {
+                            previewVideo.pause();
+                        });
+
+                        previewImg.parentNode.setAttribute('data-loaded', true);
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        });
+
+        videoPreviews.forEach(preview => observer.observe(preview));
+    });
+</script>
