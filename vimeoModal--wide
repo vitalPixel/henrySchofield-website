@@ -1,5 +1,5 @@
 <!-- Embed Vimeo Player and assign unique ID to each modalVideo -->
-<iframe id="{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" class="vimeoPlayer__iframe" src="https://player.vimeo.com/video/{{wf {&quot;path&quot;:&quot;vimeo-code&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}&dnt=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<iframe id="{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" class="vimeoPlayer__iframe" src="https://player.vimeo.com/video/{{wf {&quot;path&quot;:&quot;vimeo-code&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}?h={{wf {&quot;path&quot;:&quot;vimeo-hash-for-unlisted-videos&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}&dnt=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 <!-- Include vimeo script -->
 <script src="https://player.vimeo.com/api/player.js"></script>
@@ -25,11 +25,11 @@
     function openModal(evt) {
         var currentVideoListItem;
 
-        //Get the exact video list item (.video-list__item) that was clicked,
-        if (evt.target.classList.contains('video-list__item')) {
+        //Get the exact video list item (.video-list__item--wide) that was clicked,
+        if (evt.target.classList.contains('video-list__item--wide')) {
             currentVideoListItem = evt.target;
         } else {
-            currentVideoListItem = evt.target.closest('.video-list__item');
+            currentVideoListItem = evt.target.closest('.video-list__item--wide');
         }
         //get the modal (.modal__wrapper) nested as its child, and then
         currentModal = currentVideoListItem.querySelector('.modal__wrapper');
