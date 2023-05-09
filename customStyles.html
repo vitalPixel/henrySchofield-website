@@ -70,6 +70,12 @@
         height: -webkit-fill-available;
     }
 
+    /* Prevent horizontall scroll on iOS when video-list__wrapper has overflowing content */
+    .video-list__wrapper.video-list__wrapper--wide {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
     /* Offset the last pagination item from the right edge of the screen */
     .slider__pag__item:last-child {
         padding-right: 1rem;
