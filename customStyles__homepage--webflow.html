@@ -1,0 +1,44 @@
+<style>
+    /* Display first slide on the homepage when page loads */
+    .slider__slide__wrapper:first-child {
+        display: flex;
+    }
+
+    /* Mask the homepage header */
+    .header__content {
+        clip-path: url(#mask__henryScholfield);
+        margin-top: 8px;
+        position: relative;
+    }
+
+    .header__bckgd {
+        width: 105%;
+        height: auto;
+    }
+
+    .header__h1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .header__h1__mask {
+        width: 100%;
+    }
+
+    h1 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 9.3vw;
+        line-height: 1;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    /* Rotate slide title 90 deg */
+    .slide__title__wrapper {
+        writing-mode: vertical-rl;
+    }
+</style>
