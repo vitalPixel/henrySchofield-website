@@ -21,6 +21,13 @@
         }
     }
 
+    //When user presses the 'esc' key, close the modal
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape" || event.key === "Esc") {
+            closeModal();
+        }
+    });
+
     //Open the right modal:
     function openModal(evt) {
         var currentVideoListItem;
