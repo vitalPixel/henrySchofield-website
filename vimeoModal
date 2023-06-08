@@ -1,5 +1,5 @@
 <!-- Embed Vimeo Player and assign unique ID to each modalVideo -->
-<iframe id="{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" class="vimeoPlayer__iframe" src="https://player.vimeo.com/video/{{wf {&quot;path&quot;:&quot;vimeo-code&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}&dnt=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<iframe id="{{wf {&quot;path&quot;:&quot;slug&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}" class="vimeoPlayer__iframe" src="https://player.vimeo.com/video/{{wf {&quot;path&quot;:&quot;vimeo-code&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}?h={{wf {&quot;path&quot;:&quot;vimeo-hash-for-unlisted-videos&quot;,&quot;type&quot;:&quot;PlainText&quot;\} }}&dnt=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 <!-- Include vimeo script -->
 <script src="https://player.vimeo.com/api/player.js"></script>
@@ -7,9 +7,18 @@
 <!-- Toggle vimeo modals -->
 <script>
     var videoListElement = document.getElementById('video-list');
+    var currentModal = null;
+    var vimeoIframe = null;
     
     //When user clicks inside the video list element (#video-list), toggle Modal visibility
     videoListElement.addEventListener("click", toggleModal, false);
+    
+    //If the user presses the 'esc' key, close the modal
+    window.addEventListener("keydown", function(event) {
+        if (event.key === "Escape" || event.key === "Esc") {
+            closeModal();
+        }
+    });
 
     function toggleModal(evt) {
         //If the click comes from an open modal ('.modal__wrapper'), close the open modal
@@ -25,14 +34,16 @@
     function openModal(evt) {
         var currentVideoListItem;
 
-        //Get the exact video list item (.video-list__item) that was clicked,
-        if (evt.target.classList.contains('video-list__item')) {
+        //Get the exact video list item (.modal__trigger) that was clicked,
+        if (evt.target.classList.contains('modal__trigger')) {
             currentVideoListItem = evt.target;
         } else {
-            currentVideoListItem = evt.target.closest('.video-list__item');
+            currentVideoListItem = evt.target.closest('.modal__trigger');
         }
         //get the modal (.modal__wrapper) nested as its child, and then
         currentModal = currentVideoListItem.querySelector('.modal__wrapper');
+        //get the embedded vimeo iframe ('.vimeoPlayer__iframe'), and then
+        vimeoIframe = currentModal.querySelector('.vimeoPlayer__iframe');
         //change the visibility of the modal (.modal__wrapper) to visible.
         currentModal.classList.remove('h--hidden');
         return currentModal;
