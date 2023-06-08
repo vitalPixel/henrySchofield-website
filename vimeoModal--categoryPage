@@ -7,9 +7,18 @@
 <!-- Toggle vimeo modals -->
 <script>
     var videoListElement = document.getElementById('video-list');
+    var currentModal = null;
+    var vimeoIframe = null;
     
     //When user clicks inside the video list element (#video-list), toggle Modal visibility
     videoListElement.addEventListener("click", toggleModal, false);
+    
+    //If the user presses the 'esc' key, close the modal
+    window.addEventListener("keydown", function(event) {
+        if (event.key === "Escape" || event.key === "Esc") {
+            closeModal();
+        }
+    });
 
     function toggleModal(evt) {
         //If the click comes from an open modal ('.modal__wrapper'), close the open modal
@@ -20,13 +29,6 @@
             openModal(evt);
         }
     }
-
-    //When user presses the 'esc' key, close the modal
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "Escape" || event.key === "Esc") {
-            closeModal();
-        }
-    });
 
     //Open the right modal:
     function openModal(evt) {
@@ -40,6 +42,8 @@
         }
         //get the modal (.modal__wrapper) nested as its child, and then
         currentModal = currentVideoListItem.querySelector('.modal__wrapper');
+        //get the embedded vimeo iframe ('.vimeoPlayer__iframe'), and then
+        vimeoIframe = currentModal.querySelector('.vimeoPlayer__iframe');
         //change the visibility of the modal (.modal__wrapper) to visible.
         currentModal.classList.remove('h--hidden');
         return currentModal;
