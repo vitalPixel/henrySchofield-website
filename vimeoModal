@@ -6,12 +6,11 @@
 
 <!-- Toggle vimeo modals -->
 <script>
-    var videoListElement = document.getElementById('video-list');
     var currentModal = null;
     var vimeoIframe = null;
     
-    //When user clicks inside the video list element (#video-list), toggle Modal visibility
-    videoListElement.addEventListener("click", toggleModal, false);
+    //Toggle Modal visibility, if appropriate, when user clicks anywhere on the document
+    document.addEventListener("click", toggleModal, false);
     
     //If the user presses the 'esc' key, close the modal
     window.addEventListener("keydown", function(event) {
@@ -32,19 +31,26 @@
 
     //Open the right modal:
     function openModal(evt) {
-        var currentVideoListItem;
-
         //Get the exact video list item (.modal__trigger) that was clicked,
-        if (evt.target.classList.contains('modal__trigger')) {
-            currentVideoListItem = evt.target;
-        } else {
-            currentVideoListItem = evt.target.closest('.modal__trigger');
+        const currentVideoListItem = evt.target.closest('.modal__trigger');
+
+        //If the clicked element is not a modal trigger, exit.
+        if (!currentVideoListItem) {
+            return;
         }
-        //get the modal (.modal__wrapper) nested as its child, and then
+
+        //If the clicked element is a modal trigger, get the modal (.modal__wrapper) nested inside of it, and then
         currentModal = currentVideoListItem.querySelector('.modal__wrapper');
-        //get the embedded vimeo iframe ('.vimeoPlayer__iframe'), and then
+
+        //If the modal element is not found, exit.
+        if (!currentModal) {
+            return;
+        }
+
+        //If the modal exists, get the nested vimeo iframe ('.vimeoPlayer__iframe'), and then
         vimeoIframe = currentModal.querySelector('.vimeoPlayer__iframe');
-        //change the visibility of the modal (.modal__wrapper) to visible.
+
+        //make the modal (.modal__wrapper) visible.
         currentModal.classList.remove('h--hidden');
         return currentModal;
     }
