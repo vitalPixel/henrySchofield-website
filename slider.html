@@ -72,42 +72,45 @@
 
     }
 
-    // Navigate slider by swiping on touch screens
-    sliderNavElement.addEventListener('touchstart', function(e) {
-        initialX = e.touches[0].clientX;
-        initialY = e.touches[0].clientY;
-        initialTime = new Date();
-    });
+    // Only on pages that have the (transparent) navigation section
+    if (sliderNavElement) {
+        // Navigate slider by swiping on touch screens
+        sliderNavElement.addEventListener('touchstart', function(e) {
+            initialX = e.touches[0].clientX;
+            initialY = e.touches[0].clientY;
+            initialTime = new Date();
+        });
 
-    sliderNavElement.addEventListener('touchend', function(e) {
-        var deltaX = e.changedTouches[0].clientX - initialX;
-        var deltaY = e.changedTouches[0].clientY - initialY;
-        var deltaTime = new Date() - initialTime;
+        sliderNavElement.addEventListener('touchend', function(e) {
+            var deltaX = e.changedTouches[0].clientX - initialX;
+            var deltaY = e.changedTouches[0].clientY - initialY;
+            var deltaTime = new Date() - initialTime;
 
-        if (deltaTime < 400 && deltaY < 150) {
-            if (deltaX > 40) {
-                // Swipe-right gesture.
-                newIndex--;
-                navigateSlider();
+            if (deltaTime < 400 && deltaY < 150) {
+                if (deltaX > 40) {
+                    // Swipe-right gesture.
+                    newIndex--;
+                    navigateSlider();
+                }
+                else if (deltaX < -40) {
+                    // Swipe-left gesture.
+                    newIndex++;
+                    navigateSlider();
+                }
             }
-            else if (deltaX < -40) {
-                // Swipe-left gesture.
-                newIndex++;
-                navigateSlider();
-            }
-        }
-    });
+        });
 
-    // Navigate slider by clicking the navigation buttons
-    sliderNavElements[0].addEventListener('click', function() {
-        newIndex--;
-        navigateSlider();
-    });
+        // Navigate slider by clicking the navigation buttons
+        sliderNavElements[0].addEventListener('click', function() {
+            newIndex--;
+            navigateSlider();
+        });
 
-    sliderNavElements[1].addEventListener('click', function() {
-        newIndex++;
-        navigateSlider();
-    });
+        sliderNavElements[1].addEventListener('click', function() {
+            newIndex++;
+            navigateSlider();
+        });
+    }
 
     // Navigate slider by clicking the pagination buttons
     paginationElement.addEventListener('click', function(e) {
